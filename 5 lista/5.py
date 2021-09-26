@@ -81,8 +81,31 @@ def consultarTitular(nome):
     main()
     
 
-def alterarConta(codigo, nome, saldo):
-    print()
+def alterarConta():
+    codigo = int(input("Digite o código da conta que deseja alterar: "))
+    posicao = None
+    if codigo in numeros_existentes:
+        for i in range(len(contas)):
+            if posicao == None:
+                conta = contas[i]
+                if conta.numero == codigo:
+                    posicao = i
+        conta = ContaBancaria()
+        conta.numero = codigo
+        conta.titular = input("Digite o novo nome do titular da conta: ")
+        conta.saldo = float(input("Digite o novo saldo titular da conta: "))
+        contas[posicao] = conta
+        print("...")
+        time.sleep(1)
+        print("Conta atualizada com sucesso!")
+
+
+
+    else:
+        print("Essa conta não existe.")
+    
+    time.sleep(3)
+    main()
 
 def excluirMenorSaldo():
     if len(contas) == 0:
@@ -138,6 +161,8 @@ def main():
         else:
             print("Não há contas cadastradas")
             main()
+    elif operacao == 4:
+        alterarConta()
     elif operacao == 5:
         excluirMenorSaldo()
     elif operacao == 6:
