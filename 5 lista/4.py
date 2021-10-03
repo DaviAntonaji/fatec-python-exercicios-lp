@@ -59,7 +59,7 @@ def buscaAluno():
 
 def cadastraAlunos():
     qtdeAlunos = int(input("Digite quantos alunos deseja cadastrar: "))
-    if len(alunos) + qtdeAlunos > 15:
+    if len(alunos) + qtdeAlunos > 500:
         print("O limite de alunos dessa escola é 500, você ainda pode cadastrar: ", 500-len(alunos), "alunos")
     else:
 
