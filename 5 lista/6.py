@@ -1,0 +1,58 @@
+"""
+
+6. Uma empresa prestadora de serviços armazena informações sobre os serviços prestados. Sabe-se que a empresa pode realizar no máximo três serviços diariamente. É de interesse de sua direção manter um histórico mensal (30 dias) sobre os serviços prestados.
+A empresa realiza quatro tipos de serviços:
+
+1) pintura;
+
+2) jardinagem;
+
+3) faxina e
+
+4) reforma em geral.
+
+Cada serviço realizado deve ser cadastrado com as seguintes informações: número do serviço, valor do serviço, código do serviço e código do cliente, numa matriz 30x3 referente a estrutura Servico_prestado.
+
+Cadastre/digite os quatro tipos de serviços (código e descrição) que a empresa poderá realizar. Para isso, utilize um vetor de quatro posições referente a estrutura Tipo_servico. O programa deverá mostrar o seguinte menu de opções:
+
+Cadastrar os tipos de serviços
+Mostrar todos os tipos de serviço
+Cadastrar os serviços prestados
+Mostrar todos os serviços prestados
+Mostrar os serviços prestados em determinado dia
+Mostrar os serviços prestados dentro de um intervalo de valor
+Mostrar um relatório geral (separado por dia), que exiba, inclusive, a descrição do tipo do serviço
+Sair
+Para a opção 1: deve-se cadastrar os tipos de serviços oferecidos pela empresa, com código e descrição.
+
+Para a opção 3: deve-se considerar que deverão ser cadastrados os serviços prestados ao logo do mês. Em cada dia podem ser cadastrados, no máximo, três serviços prestados.
+
+Utilize uma matriz capaz de armazenar em cada posição todas as informações referentes a um serviço prestado (número, valor, código do serviço, código do cliente). Cada linha representa um dia do mês. Dessa maneira, considere a matriz com dimensão 30 × 3.
+
+Solicite o dia em que o serviço foi prestado e as demais informações. Lembre-se de que a empresa só pode prestar os serviços que já tenham sido cadastrados no vetor de tipo de serviços.
+
+Caso o usuário digite um código de tipo de serviço inválido, o programa deverá mostrar uma mensagem de erro.
+
+Quando o usuário tentar cadastrar mais de três serviços prestados em um mesmo dia, também deverá mostrar uma mensagem de erro.
+
+Para a opção 5: o programa deverá receber o dia que se deseja consultar e mostrar os respectivos serviços prestados.
+
+Para a opção 6: o programa deverá receber o valor mínimo e o valor máximo e mostrar os serviços prestados que estiverem nesse intervalo.
+
+Para a opção 7: o programa deverá mostrar todos os serviços prestados, conforme o exemplo a seguir.
+
+              DIA 01
+No do serviço	Valor do serviço R$	Código do serviço	Descrição	Código do cliente
+100	200,00	1	Pintura	1
+150	100,00	3	Faxina	5
+201	640,00	4	Reforma em geral	2
+              DIA 02
+No do serviço	Valor do serviço R$	Código do serviço	Descrição	Código do cliente
+301	600,00	4	Reforma em geral	3
+280	352,00	1	Pintura	2
+306	200,00	2	Jardinagem	1
+
+
+
+"""
+

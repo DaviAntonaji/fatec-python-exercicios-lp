@@ -59,26 +59,29 @@ def buscaAluno():
 
 def cadastraAlunos():
     qtdeAlunos = int(input("Digite quantos alunos deseja cadastrar: "))
+    if len(alunos) + qtdeAlunos > 15:
+        print("O limite de alunos dessa escola é 500, você ainda pode cadastrar: ", 500-len(alunos), "alunos")
+    else:
 
-    for i in range(qtdeAlunos):
-        aluno = Aluno()
-        aluno.nome = input(f"Digite o nome do {i+1}° aluno: ")
-        aluno.telefone = input(f"Digite o telefone do {i+1}° aluno: ")
-        aluno.endereco = input(f"Digite o endereço do {i+1}° aluno: ")
-        aluno.serie = input(f"Digite a série do {i+1}° aluno: ")
-        alunos.append(aluno)
-    main()
+        for i in range(qtdeAlunos):
+            aluno = Aluno()
+            aluno.nome = input(f"Digite o nome do {i+1}° aluno: ")
+            aluno.telefone = input(f"Digite o telefone do {i+1}° aluno: ")
+            aluno.endereco = input(f"Digite o endereço do {i+1}° aluno: ")
+            aluno.serie = input(f"Digite a série do {i+1}° aluno: ")
+            alunos.append(aluno)
+        main()
 
 
-def listaAlunos():
-    for aluno in alunos:
-        print("."*30)
-        print("Aluno: ", aluno.nome)
-        print("O telefone dele é: ", aluno.telefone)
-        print("O endereço dele é: ", aluno.endereco)
-        print("A série dele é: ", aluno.serie)
-        print("."*30)
-    main()
+    def listaAlunos():
+        for aluno in alunos:
+            print("."*30)
+            print("Aluno: ", aluno.nome)
+            print("O telefone dele é: ", aluno.telefone)
+            print("O endereço dele é: ", aluno.endereco)
+            print("A série dele é: ", aluno.serie)
+            print("."*30)
+        main()
 
 
 def main():
