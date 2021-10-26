@@ -15,7 +15,6 @@ class Servico:
     valor_servico:float
     codigo_servico:int
     codigo_cliente:int
-    dia_servico: str
 
 # --- #
 # Fim das Estruturas
@@ -92,13 +91,19 @@ def cadastra_servico():
         desejaCadastrar = True
         while desejaCadastrar == True:
 
-            servico = Servico()
-            servico.numero_servico = int(input("Digite o número do serviço: "))
-            servico.valor_servico = float(input("Digite o valor do serviço: "))
-            servico.codigo_servico = int(input("Digite o código do tipo de serviço: "))
-            servico.codigo_cliente = int(input("Digite o código do cliente: "))
-            servico.dia_servico = input("Digite a data do serviço (dia/mes/ano): ")
-            servicos.append(servico)
+            dia = int(input("Digite o dia de serviço: "))
+
+            if len(servico[dia] < 3):
+
+                servico = Servico()
+                servico.numero_servico = int(input("Digite o número do serviço: "))
+                servico.valor_servico = float(input("Digite o valor do serviço: "))
+                servico.codigo_servico = int(input("Digite o código do tipo de serviço: "))
+                servico.codigo_cliente = int(input("Digite o código do cliente: "))
+                servicos[dia].append(servico)
+            
+            else:
+                print("Já á três serviços nesse dia.")
 
             resposta = input("Deseja cadastrar mais um serviço prestado? (S/N): ")
             if resposta.lower() == "s":
@@ -112,15 +117,18 @@ def cadastra_servico():
 
 def consulta_todos():
 
-    for servico in servicos:
-
+    for dia in servicos:
         print("*"*30)
-        print("Número de serviço: ", servico.numero_servico)
-        print("Valor de serviço: R$", "{:.2f}".format(servico.valor_servico))
-        print("Código de serviço: ", servico.codigo_servico)
-        print("Tipo de serviço: ", pegaTipo(servico.codigo_servico))
-        print("Código de cliente: ", servico.codigo_cliente)
-        print("Dia de serviço: ", servico.dia_servico)
+        print("Dia:", dia)
+        for servico in dia:
+            
+            print("-"*10)
+            print("Número de serviço: ", servico.numero_servico)
+            print("Valor de serviço: R$", "{:.2f}".format(servico.valor_servico))
+            print("Código de serviço: ", servico.codigo_servico)
+            print("Tipo de serviço: ", pegaTipo(servico.codigo_servico))
+            print("Código de cliente: ", servico.codigo_cliente)
+            print("Dia de serviço: ", servico.dia_servico)
 
 
         print("*"*30)
@@ -132,6 +140,8 @@ def consulta_todos():
 def consulta_dia():
     data = input("Digite a data que deseja consultar (dia/mes/ano): ")
     vetor = pegaServicosDia(data)
+    
+    
     for servico in vetor:
 
         print("*"*30)
@@ -144,8 +154,12 @@ def consulta_dia():
 
 
         print("*"*30)
+
+
+
     if len(vetor) == 0:
         print("Não há serviços cadastrados nesse dia...")
+    print("*"*30)
     time.sleep(2)
     menu()
         
