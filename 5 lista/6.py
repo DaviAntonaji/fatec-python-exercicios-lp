@@ -2,6 +2,8 @@ import time
 
 tipo_servico = []
 servicos = []
+for i in range(0,31):
+    servicos.insert(i, [])
 # --- #
 # Estruturas
 # --- #
@@ -29,7 +31,7 @@ def pegaTipo(codigo):
     return [tipo for tipo in tipo_servico if tipo.codigo == codigo][0].nome
 
 def pegaServicosDia(dia):
-    return [servico for servico in servicos if servico.dia_servico == dia]
+    return servicos[dia-1]
 
 # --- #
 # Fim das Funções de filtro
@@ -93,14 +95,14 @@ def cadastra_servico():
 
             dia = int(input("Digite o dia de serviço: "))
 
-            if len(servico[dia] < 3):
+            if len(servicos[dia]) < 3:
 
                 servico = Servico()
                 servico.numero_servico = int(input("Digite o número do serviço: "))
                 servico.valor_servico = float(input("Digite o valor do serviço: "))
                 servico.codigo_servico = int(input("Digite o código do tipo de serviço: "))
                 servico.codigo_cliente = int(input("Digite o código do cliente: "))
-                servicos[dia].append(servico)
+                servicos[dia-1].append(servico)
             
             else:
                 print("Já á três serviços nesse dia.")
@@ -117,18 +119,25 @@ def cadastra_servico():
 
 def consulta_todos():
 
+    contador = 0
     for dia in servicos:
         print("*"*30)
-        print("Dia:", dia)
-        for servico in dia:
-            
-            print("-"*10)
-            print("Número de serviço: ", servico.numero_servico)
-            print("Valor de serviço: R$", "{:.2f}".format(servico.valor_servico))
-            print("Código de serviço: ", servico.codigo_servico)
-            print("Tipo de serviço: ", pegaTipo(servico.codigo_servico))
-            print("Código de cliente: ", servico.codigo_cliente)
-            print("Dia de serviço: ", servico.dia_servico)
+        contador+=1
+        print("Dia:", contador)
+
+        if dia != []:
+        
+            for servico in dia:
+                
+                print("-"*10)
+                print("Número de serviço: ", servico.numero_servico)
+                print("Valor de serviço: R$", "{:.2f}".format(servico.valor_servico))
+                print("Código de serviço: ", servico.codigo_servico)
+                print("Tipo de serviço: ", pegaTipo(servico.codigo_servico))
+                print("Código de cliente: ", servico.codigo_cliente)
+        else:
+            print("Neste dia não há serviços.")
+         
 
 
         print("*"*30)
@@ -138,7 +147,7 @@ def consulta_todos():
     menu()
 
 def consulta_dia():
-    data = input("Digite a data que deseja consultar (dia/mes/ano): ")
+    data = int(input("Digite a dia que deseja consultar : "))
     vetor = pegaServicosDia(data)
     
     
@@ -150,7 +159,7 @@ def consulta_dia():
         print("Código de serviço: ", servico.codigo_servico)
         print("Tipo de serviço: ", pegaTipo(servico.codigo_servico))
         print("Código de cliente: ", servico.codigo_cliente)
-        print("Dia de serviço: ", servico.dia_servico)
+
 
 
         print("*"*30)
@@ -194,6 +203,7 @@ def menu():
             consulta_todos()
         elif operacao == "5":
             consulta_dia()
+  
         elif operacao == "8":
             print("Saindo...")
             time.sleep(2)
