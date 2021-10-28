@@ -1,4 +1,5 @@
 import time
+from tabulate import tabulate
 
 tipo_servico = []
 servicos = []
@@ -95,7 +96,7 @@ def cadastra_servico():
 
             dia = int(input("Digite o dia de serviço: "))
 
-            if len(servicos[dia]) < 3:
+            if len(servicos[dia-1]) < 3:
 
                 servico = Servico()
                 servico.numero_servico = int(input("Digite o número do serviço: "))
@@ -126,15 +127,15 @@ def consulta_todos():
         print("Dia:", contador)
 
         if dia != []:
-        
+            dados = []
+            print("DIA: ", contador)
             for servico in dia:
-                
-                print("-"*10)
-                print("Número de serviço: ", servico.numero_servico)
-                print("Valor de serviço: R$", "{:.2f}".format(servico.valor_servico))
-                print("Código de serviço: ", servico.codigo_servico)
-                print("Tipo de serviço: ", pegaTipo(servico.codigo_servico))
-                print("Código de cliente: ", servico.codigo_cliente)
+              
+        # print(servico.numero_servico, "R$", "{:.2f}".format(servico.valor_servico), servico.codigo_servico, pegaTipo(servico.codigo_servico), servico.codigo_cliente)
+                dados.append([str(servico.numero_servico), str(servico.valor_servico), str(servico.codigo_servico), pegaTipo(servico.codigo_servico), str(servico.codigo_cliente)])
+        
+
+            print(tabulate(dados, headers=["No de serviço", "Valor do serviço R$", "Código de serviço", "Descrição", "Código de cliente"]))
         else:
             print("Neste dia não há serviços.")
          
@@ -150,19 +151,16 @@ def consulta_dia():
     data = int(input("Digite a dia que deseja consultar : "))
     vetor = pegaServicosDia(data)
     
-    
+    print()
+    dados = []
     for servico in vetor:
+   
+        # print(servico.numero_servico, "R$", "{:.2f}".format(servico.valor_servico), servico.codigo_servico, pegaTipo(servico.codigo_servico), servico.codigo_cliente)
+        dados.append([str(servico.numero_servico), str(servico.valor_servico), str(servico.codigo_servico), pegaTipo(servico.codigo_servico), str(servico.codigo_cliente)])
+        
 
-        print("*"*30)
-        print("Número de serviço: ", servico.numero_servico)
-        print("Valor de serviço: R$", "{:.2f}".format(servico.valor_servico))
-        print("Código de serviço: ", servico.codigo_servico)
-        print("Tipo de serviço: ", pegaTipo(servico.codigo_servico))
-        print("Código de cliente: ", servico.codigo_cliente)
-
-
-
-        print("*"*30)
+    print(tabulate(dados, headers=["No de serviço", "Valor do serviço R$", "Código de serviço", "Descrição", "Código de cliente"]))
+       
 
 
 
