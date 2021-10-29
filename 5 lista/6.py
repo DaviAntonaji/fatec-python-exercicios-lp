@@ -118,7 +118,54 @@ def cadastra_servico():
         menu()
 
 
-def consulta_todos():
+def consultar_tudo():
+
+    contador = 0
+    dados = []
+    for dia in servicos:
+        print("*"*30)
+        contador+=1
+        
+        if dia != []:
+            
+            
+            for servico in dia:
+              
+       
+                dados.append([contador, str(servico.numero_servico), str(servico.valor_servico), str(servico.codigo_servico), pegaTipo(servico.codigo_servico), str(servico.codigo_cliente)])
+        
+
+    print(tabulate(dados, headers=["Dia", "No de serviço", "Valor do serviço R$", "Código de serviço", "Descrição", "Código de cliente"]))
+    menu()
+
+
+
+
+
+def consultar_preco():
+
+    valor_inicial = float(input("Digite o valor inicial: "))
+    valor_final = float(input("Digite o valor final: "))
+    contador = 0
+    dados = []
+    for dia in servicos:
+        print("*"*30)
+        contador+=1
+        print("Dia:", contador)
+        
+        if dia != []:
+            
+            print("DIA: ", contador)
+            for servico in dia:
+              
+                if servico.valor_servico >= valor_inicial and servico.valor_servico <= valor_final:
+                    dados.append([contador, str(servico.numero_servico), str(servico.valor_servico), str(servico.codigo_servico), pegaTipo(servico.codigo_servico), str(servico.codigo_cliente)])
+        
+
+    print(tabulate(dados, headers=["Dia", "No de serviço", "Valor do serviço R$", "Código de serviço", "Descrição", "Código de cliente"]))
+    menu()
+
+def relatorio_geral():
 
     contador = 0
     for dia in servicos:
@@ -131,7 +178,7 @@ def consulta_todos():
             print("DIA: ", contador)
             for servico in dia:
               
-        # print(servico.numero_servico, "R$", "{:.2f}".format(servico.valor_servico), servico.codigo_servico, pegaTipo(servico.codigo_servico), servico.codigo_cliente)
+       
                 dados.append([str(servico.numero_servico), str(servico.valor_servico), str(servico.codigo_servico), pegaTipo(servico.codigo_servico), str(servico.codigo_cliente)])
         
 
@@ -155,7 +202,7 @@ def consulta_dia():
     dados = []
     for servico in vetor:
    
-        # print(servico.numero_servico, "R$", "{:.2f}".format(servico.valor_servico), servico.codigo_servico, pegaTipo(servico.codigo_servico), servico.codigo_cliente)
+     
         dados.append([str(servico.numero_servico), str(servico.valor_servico), str(servico.codigo_servico), pegaTipo(servico.codigo_servico), str(servico.codigo_cliente)])
         
 
@@ -198,10 +245,13 @@ def menu():
         elif operacao == "3":
             cadastra_servico()
         elif operacao == "4":
-            consulta_todos()
+            consultar_tudo()
         elif operacao == "5":
             consulta_dia()
-  
+        elif operacao == "6":
+            consultar_preco()
+        elif operacao == "7":
+            relatorio_geral()
         elif operacao == "8":
             print("Saindo...")
             time.sleep(2)
