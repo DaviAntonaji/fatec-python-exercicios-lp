@@ -5,6 +5,13 @@ Observação: esse exercício deve ser testado fora do Colab, no Idle ou qualque
 
 from tabulate import tabulate
 
+class Futebol:
+    posicao:str
+    altura:float
+    peso:float
+    imc:float
+    classificacao:str
+
 def consulta():
     with open("futebol.txt", "r", encoding="utf-8") as file:
         tabela = []
@@ -12,24 +19,25 @@ def consulta():
         for line in file.readlines():
             i+=1
             dados = line.split(",")
+            futebol = Futebol
 
-            posicao = dados[0]
-            altura = float(dados[1])
-            peso = float(dados[2])
-            imc = peso / (altura ** 2)
-            if imc < 18.5:
-                classificacao = "Abaixo do peso"
-            elif imc >= 18.5 and imc <= 24.9:
-                classificacao = "Peso normal"
-            elif imc >= 25 and imc <= 29.9:
-                classificacao = "Sobrepeso"
-            elif imc >= 30:
-                classificacao = "Obesidade"
+            futebol.posicao = dados[0]
+            futebol.altura = float(dados[1])
+            futebol.peso = float(dados[2])
+            futebol.imc = futebol.peso / (futebol.altura ** 2)
+            if futebol.imc < 18.5:
+                futebol.classificacao = "Abaixo do peso"
+            elif futebol.imc >= 18.5 and futebol.imc <= 24.9:
+                futebol.classificacao = "Peso normal"
+            elif futebol.imc >= 25 and futebol.imc <= 29.9:
+                futebol.classificacao = "Sobrepeso"
+            elif futebol.imc >= 30:
+                futebol.classificacao = "Obesidade"
             
             with open("futebol4.txt", "a+", encoding="utf-8") as newfile:
-                newfile.write(str(posicao) + ","+ str(altura) + "," + str(peso) + "," + str(imc) + "," + classificacao + "\n")
+                newfile.write(str(futebol.posicao) + ","+ str(futebol.altura) + "," + str(futebol.peso) + "," + str(futebol.imc) + "," + futebol.classificacao + "\n")
 
-            tabela.append([i, posicao,altura,peso,imc, classificacao])
+            tabela.append([i, futebol.posicao,futebol.altura,futebol.peso,futebol.imc, futebol.classificacao])
         print(tabulate(tabela, headers=["Jogador", "Posição", "Altura", "Peso", "IMC", "Classificação"]))
 
 
